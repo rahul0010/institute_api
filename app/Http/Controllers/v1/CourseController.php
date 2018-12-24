@@ -42,32 +42,32 @@ class CourseController extends Controller
         ]);
 
         //Handle File upload
-        if($request->hasFile('photo_url'))
+        if($request->hasFile('image_url'))
         {
             //Get file name
-            $filename_with_extension = $request->file('photo_url')->getClientOriginalImage();
+            $filename_with_extension = $request->file('image_url')->getClientOriginalName();
             //Get just file name
             $filename = pathinfo($filename_with_extension, PATHINFO_FILENAME);
             //get ext
-            $ext = $request->file('photo_url')->getClientOriginalExtension();
+            $ext = $request->file('image_url')->getClientOriginalExtension();
             $filename_to_store = $filename.'_'.time().'.'.$ext;
-            $path = $request->file('photo_url')->storeAs('public/course_banners', $filename_to_store);
+            $path = $request->file('image_url')->storeAs('public/course_banners', $filename_to_store);
         }
         else
         {
             $filename_to_store = 'profile-placeholder.png';
         }
 
-        if($request->hasFile('photo_url'))
+        if($request->hasFile('syllabus'))
         {
             //Get file name
-            $filename_with_extension = $request->file('photo_url')->getClientOriginalImage();
+            $filename_with_extension = $request->file('syllabus')->getClientOriginalName();
             //Get just file name
             $filename = pathinfo($filename_with_extension, PATHINFO_FILENAME);
             //get ext
-            $ext = $request->file('photo_url')->getClientOriginalExtension();
+            $ext = $request->file('syllabus')->getClientOriginalExtension();
             $syllabus_to_store = $filename.'_'.time().'.'.$ext;
-            $path = $request->file('syllabus_link')->storeAs('public/syllabus', $syllabus_to_store);
+            $path = $request->file('syllabus')->storeAs('public/syllabus', $syllabus_to_store);
         }
         else
         {
@@ -75,11 +75,11 @@ class CourseController extends Controller
         }
 
         $course = new Course;
-        $course->name = $request->input('name');
+        $course->name = $request->input('course_name');
         $course->description = $request->input('description');
         $course->duration = $request->input('duration');
         $course->total_fee = $request->input('total_fee');
-        $course->photo_url = $filename_to_store;
+        $course->image_url = $filename_to_store;
         $course->syllabus_link = $syllabus_to_store;
         $course->save();
 
@@ -117,7 +117,41 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $course = Course::findOrFail($id);
+        $course->name = $request->input('course_name');
+        $course->description = $request->input('description');
+        $course->duration = $request->input('duration');
+        $course->total_fee = $request->input('total_fee');
+
+        //Handle File upload
+        if($request->hasFile('image_url'))
+        {
+            //Get file name
+            $filename_with_extension = $request->file('image_url')->getClientOriginalName();
+            //Get just file name
+            $filename = pathinfo($filename_with_extension, PATHINFO_FILENAME);
+            //get ext
+            $ext = $request->file('image_url')->getClientOriginalExtension();
+            $filename_to_store = $filename.'_'.time().'.'.$ext;
+            $path = $request->file('image_url')->storeAs('public/course_banners', $filename_to_store);
+            $course->image_url = $filename_to_store;
+        }
+
+        if($request->hasFile('syllabus'))
+        {
+            //Get file name
+            $filename_with_extension = $request->file('syllabus')->getClientOriginalName();
+            //Get just file name
+            $filename = pathinfo($filename_with_extension, PATHINFO_FILENAME);
+            //get ext
+            $ext = $request->file('syllabus')->getClientOriginalExtension();
+            $syllabus_to_store = $filename.'_'.time().'.'.$ext;
+            $path = $request->file('syllabus')->storeAs('public/syllabus', $syllabus_to_store);
+            $course->syllabus_link = $syllabus_to_store;
+        }
+        $course->save();
+
+        return "File saved";
     }
 
     /**
@@ -128,6 +162,9 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $course = Course::findOrFail($id);
+        $course->delete();
+
+        return 204;
     }
 }

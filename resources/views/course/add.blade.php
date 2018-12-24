@@ -2,11 +2,15 @@
 @section('title','Courses')
 @section('page-heading','Add Course')
 @section('content')
+@php
+    $arr = json_decode($response,true);
+@endphp
 <div class="container p-4">
-    <form action="" method="post">
+    <form action="/api/v1/courses" method="post" enctype="multipart/form-data">
+        @csrf
         <div class="form-group">
             <label class="form-label" for="course_id">Course Id</label>
-            <input type="text" name="course_id" id="course_id" class="form-control" placeholder="Course Id" readonly>
+        <input type="text" name="course_id" id="course_id" class="form-control" placeholder="Course Id" readonly value="{{ $arr["total"]+1 }}">
         </div>
         <div class="form-group">
             <label class="form-label" for="course_name">Course Name</label>
@@ -26,11 +30,11 @@
         </div>
         <div class="form-group">
             <label class="form-label" for="image_url">Course Banner</label>
-            <input type="file" name="image_url" id="image_url" class="form-control-file" placeholder="Select course banner file" accepts=".jpg,.jpeg">
+            <input type="file" name="image_url" id="image_url" class="form-control-file" placeholder="Select course banner file" accept=".jpg,.jpeg">
         </div>
         <div class="form-group">
             <label class="form-label" for="syllabus">Syllabus</label>
-            <input type="file" name="syllabus" id="syllabus" class="form-control-file" placeholder="Select Syllabus file" accepts=".doc,.docx,.xls,.xlsx,.odt,.pdf">
+            <input type="file" name="syllabus" id="syllabus" class="form-control-file" placeholder="Select Syllabus file" accept=".doc,.docx,.xls,.xlsx,.odt,.pdf">
         </div>
         <button type="submit" class="btn btn-outline-dark">Add Course</button>
     </form>

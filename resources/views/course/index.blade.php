@@ -11,7 +11,7 @@
         @foreach ($data['data'] as $course)
             <div class="col-md-4 col-lg-3 col-sm-6 col-xs-12 mb-4 d-flex">
                 <div class="card" >
-                <img class="card-img-top" src="{{ $course["image_url"] }}" alt="{{ $course["name"] }}">
+                <img class="card-img-top" src="{{ Storage::url('course_banners/'.$course["image_url"]) }}" alt="{{ $course["name"] }}">
                     <div class="card-body d-flex-column">
                         <h5 class="card-title">{{ $course["name"] }}</h5>
                         <span class="card-text d-block">Duration: {{ $course["duration"] }} months</span>

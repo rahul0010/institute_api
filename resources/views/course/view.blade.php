@@ -6,7 +6,8 @@
     @php
         $arr = json_decode($response, true);
     @endphp
-    <form action="" method="post">
+    <form action="/api/v1/courses/{{$arr["id"]}}" method="post">
+        @method('delete')
         <div class="form-group">
             <label class="form-label" for="course_id">Course Id</label>
         <input type="text" name="course_id" id="course_id" class="form-control" placeholder="Course Id" readonly value="{{ $arr["id"] }}">
@@ -30,14 +31,14 @@
         <div class="form-group">
             <label class="form-label" for="image_url">Course Banner</label>
             {{-- <input type="file" name="image_url" id="image_url" class="form-control-file" placeholder="Select course banner file" accepts=".jpg,.jpeg"> --}}
-        <img src="{{ $arr["image_url"] }}" class="img-responsive d-block w-50">
+        <img src="{{ Storage::url("/course_banners/".$arr["image_url"]) }}" class="img-responsive d-block w-50">
         </div>
         <div class="form-group">
             <label class="form-label" for="syllabus">Syllabus</label>
             {{-- <input type="file" name="syllabus" id="syllabus" class="form-control-file" placeholder="Select Syllabus file" accepts=".doc,.docx,.xls,.xlsx,.odt,.pdf"> --}}
-        <a href="{{ $arr["syllabus_link"] }}" class="link d-block">Syllabus</a>
+        <a href="{{ $arr["syllabus_link"] }}" class="link d-block" download>Syllabus</a>
         </div>
-        {{-- <button type="submit" class="btn btn-outline-dark">Update Course</button> --}}
+        <button type="submit" class="btn btn-outline-dark">Delete</button>
     </form>
 </div>
 @endsection
