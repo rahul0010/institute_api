@@ -80,16 +80,19 @@ Route::get('/students', function(){
     return view('students.index', ['response' => $response]);
 });
 
-Route::get('students/{id}', function () {
+Route::get('/students/add', function(){
+    $id = getLastId('students');
+    return view('students.add',["id" => $id]);
+});
+
+Route::get('students/{id}', function ($id) {
+    $response = getApiResponse('/api/v1/students/'.$id);
     return view('students.view',["response" => $response]);
 });
 
-Route::get('/students/add', function(){
-    return view('students.add');
-});
-
-Route::get('/students/{id}/update', function(){
-    return view('students.update');
+Route::get('/students/{id}/update', function($id){
+    $response = getApiResponse('/api/v1/students/'.$id);
+    return view('students.update',["response" => $response]);
 });
 
 Route::get('students/{id}/fee', function(){

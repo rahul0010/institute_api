@@ -12,7 +12,7 @@ $factory->define(App\Student::class, function (Faker $faker) {
         'phone' => $faker->numerify('##########'),
         'qualification' => $faker->word,
         'faculty_id' => $faker->numberBetween(1,10),
-        'course' => $faker->jobTitle,
+        'course_id' => $faker->numberBetween(1,10),
         'aadhar' => $faker->numerify('############')
     ];
 });

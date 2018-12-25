@@ -17,7 +17,6 @@ class CreateFeesTable extends Migration
             $table->increments('id');
             $table->integer('student_id');
             $table->integer('course_id')->nullable();
-            $table->string('course_name')->nullable();
             $table->integer('installment_no');
             $table->integer('total_fees');
             $table->integer('fees_paid');

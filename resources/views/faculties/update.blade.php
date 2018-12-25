@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-md-3 mt-4">
                     <label for="photo" class="form-label">
-                        <img class="w-100 d-block rounded border border-dark" src="{{ Storage::url('public/student_images/'.$data["photo_url"]) }}" alt="" id="resultImg">
+                        <img class="w-100 d-block rounded border border-dark" src="{{ Storage::url('public/faculty_images/'.$data["photo_url"]) }}" alt="" id="resultImg">
                         <small class="d-block text-muted-form-text text-center">Click on image to change profile picture</small>
                     </label>
                     <input type="file" name="photo" id="photo" class="form-control-file" hidden accept=".jpg,.jpeg,.png">

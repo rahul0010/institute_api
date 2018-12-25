@@ -24,7 +24,7 @@ class CreateStudentsTable extends Migration
             $table->string('qualification');
             $table->decimal('aadhar',12,0);
             $table->integer('faculty_id');
-            $table->string('course');
+            $table->integer('course_id');
             $table->timestamps();
         });
     }

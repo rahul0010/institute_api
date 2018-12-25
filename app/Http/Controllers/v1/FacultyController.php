@@ -42,7 +42,7 @@ class FacultyController extends Controller
             $filename = pathinfo($original_filename, PATHINFO_FILENAME);
             $ext = $request->file('photo')->getClientOriginalExtension();
             $filename_to_store = $filename.'_'.time().'.'.$ext;
-            $path = $request->file('photo')->storeAs('public/student_images/',$filename_to_store);
+            $path = $request->file('photo')->storeAs('public/faculty_images/',$filename_to_store);
         }
         else
         {
@@ -104,7 +104,7 @@ class FacultyController extends Controller
             $filename = pathinfo($original_filename, PATHINFO_FILENAME);
             $ext = $request->file('photo')->getClientOriginalExtension();
             $filename_to_store = $filename.'_'.time().'.'.$ext;
-            $path = $request->file('photo')->storeAs('public/student_images/',$filename_to_store);
+            $path = $request->file('photo')->storeAs('public/faculty_images/',$filename_to_store);
             $faculty->photo_url = $filename_to_store;
         }
 

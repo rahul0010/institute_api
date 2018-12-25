@@ -11,12 +11,16 @@
         @foreach ($data["data"] as $student)
             <div class="col-md-4 col-lg-3 col-sm-6 col-xs-12 mb-4 d-flex">
                 <div class="card" >
-                <img class="card-img-top" src="{{ $student["photo_url"] }}" alt="{{ $student["first_name"]." ".$student["middle_name"]." ".$student["last_name"] }}" >
+                <img class="card-img-top" src="{{ Storage::url('public/student_images/'.$student["photo_url"]) }}" alt="{{ $student["first_name"]." ".$student["middle_name"]." ".$student["last_name"] }}" >
                     <div class="card-body d-flex-column">
                         <h5 class="card-title">{{ $student["first_name"]." ".$student["middle_name"]." ".$student["last_name"] }}</h5>
                         <span class="card-text d-block">{{ $student["email"] }}</span>
                         <span class="card-text d-block">+91 {{ $student["phone"] }}</span>
-                        <span class="card-text d-block">{{ $student["course"] }}</span>
+                        @php
+                            $newresponse = getApiResponse('/api/v1/courses/'.$student["course_id"]);
+                            $newarr = json_decode($newresponse,true);
+                        @endphp
+                        <span class="card-text d-block">{{ $newarr["name"] }}</span>
                         <span class="card-text d-block">
                             @php
                                 $newresponse = getApiResponse('/api/v1/faculties/'.$student["faculty_id"]);

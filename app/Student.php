@@ -16,7 +16,7 @@ class Student extends Model
         'qualification',
         'aadhar',
         'faculty_id',
-        'course'
+        'course_id'
     ];
 
     protected $hidden = [
