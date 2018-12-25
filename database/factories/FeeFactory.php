@@ -7,6 +7,7 @@ $factory->define(App\Fee::class, function (Faker $faker) {
         'student_id' => $faker->numberBetween(1,100),
         'course_id' => $faker->numberBetween(1,10),
         'installment_no' => $faker->numberBetween(1,5),
+        'installment_amount' => $faker->numberBetween(5,50) * 1000,
         'total_fees' => $faker->numberBetween(5,50) * 1000,
         'fees_paid' => $faker->numberBetween(5,50) * 1000,
         'payment_due' => $faker->date('Y-m-d'),

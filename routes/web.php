@@ -95,19 +95,20 @@ Route::get('/students/{id}/update', function($id){
     return view('students.update',["response" => $response]);
 });
 
-Route::get('students/{id}/fee', function(){
-    return view('fee.index');
+Route::get('/students/{id}/fee', function($id){
+    $response = getApiResponse('/api/v1/students/'.$id.'/fee');
+    return view('fees.index',["response" => $response]);
 });
 
-Route::get('students/{id}/course', function(){
-    return view('fee.course.add');
+Route::get('/students/{id}/course', function($id){
+    return view('fees.course.add',["id" => $id]);
 });
 
-Route::get('students/{id}/course/update', function(){
-    return view('fee.course.update');
+Route::get('/students/{id}/course/update', function(){
+    return view('fees.course.update');
 });
 
-Route::get('students/{id}/pay', function()
+Route::get('/students/{id}/fee/{fid}/pay', function($id,$fid)
 {
-    return view('fee.pay');
+    return view('fees.pay',["id" => $id, "fid" => $fid]);
 });

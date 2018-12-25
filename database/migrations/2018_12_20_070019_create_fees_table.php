@@ -18,13 +18,14 @@ class CreateFeesTable extends Migration
             $table->integer('student_id');
             $table->integer('course_id')->nullable();
             $table->integer('installment_no');
+            $table->integer('installment_amount');
             $table->integer('total_fees');
-            $table->integer('fees_paid');
-            $table->date('payment_due');
-            $table->integer('amount');
-            $table->timestamp('payment_date');
-            $table->integer('total_fee_paid');
-            $table->integer('balance');
+            $table->integer('fees_paid')->nullable();
+            $table->date('payment_due')->nullable();
+            $table->integer('amount')->nullable();
+            $table->timestamp('payment_date')->nullable();
+            $table->integer('total_fee_paid')->nullable();
+            $table->integer('balance')->nullable();
             $table->timestamps();
         });
     }

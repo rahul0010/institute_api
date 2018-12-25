@@ -22,3 +22,5 @@ Route::resource('v1/batches', v1\BatchController::class);
 Route::resource('v1/faculties', v1\FacultyController::class);
 Route::resource('v1/students', v1\StudentsController::class);
 Route::resource('v1/students/{id}/fee', v1\FeeController::class);
+Route::get('v1/students/{id}/fee/{fid}', 'v1\FeeController@show');
+Route::put('v1/students/{id}fee/{fid}/pay', 'v1\FeeController@update');

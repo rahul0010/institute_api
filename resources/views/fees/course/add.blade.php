@@ -3,34 +3,40 @@
 @section('page-heading','Add Course')
 @section('content')
 <div class="container p-4">
-    <form action="" method="post">
+    <form action="/api/v1/students/{{$id}}/fee" method="post">
+        @csrf
         <div class="form-group">
-            <label class="form-label" for="course_id">Course Id</label>
-            <input type="text" name="course_id" id="course_id" class="form-control" placeholder="Course Id" readonly>
+            <label class="form-label" for="student_id">Student Id</label>
+        <input type="text" name="student_id" id="student_id" class="form-control" placeholder="Student Id" value="{{$id}}">
         </div>
         <div class="form-group">
-            <label class="form-label" for="course_name">Course Name</label>
-            <input type="text" name="course_name" id="course_name" class="form-control" placeholder="Course Name">
+            <label for="course" class="form-label">Course.</label>
+            <input list="course_list" name="course" id="course" class="form-control" placeholder="Course Name">
+            @php
+                $request = getApiResponse('/api/v1/courses');
+                $arr = json_decode($request,true);
+            @endphp
+            <datalist id="course_list">
+                @foreach ($arr["data"] as $course)
+                <option value="{{ $course["id"] }}">{{ $course["name"] }}</option>
+                @endforeach
+            </datalist>
         </div>
         <div class="form-group">
             <label class="form-label" for="duration">Duration</label>
             <input type="number" name="duration" id="duration" class="form-control" placeholder="Duration of course in months">
         </div>
         <div class="form-group">
-            <label class="form-label" for="description">Description</label>
-            <textarea type="text" name="description" id="description" class="form-control" placeholder="Short description of course" rows="3"></textarea>
-        </div>
-        <div class="form-group">
             <label class="form-label" for="total_fee">Total Fee</label>
             <input type="number" name="total_fee" id="total_fee" class="form-control" placeholder="Total fee">
         </div>
         <div class="form-group">
-            <label class="form-label" for="image_url">Course Banner</label>
-            <input type="file" name="image_url" id="image_url" class="form-control-file" placeholder="Select course banner file" accepts=".jpg,.jpeg">
+            <label class="form-label" for="installment">Installment</label>
+            <input type="number" name="installment" id="installment" class="form-control" placeholder="Installment Amount">
         </div>
         <div class="form-group">
-            <label class="form-label" for="syllabus">Syllabus</label>
-            <input type="file" name="syllabus" id="syllabus" class="form-control-file" placeholder="Select Syllabus file" accepts=".doc,.docx,.xls,.xlsx,.odt,.pdf">
+            <label class="form-label" for="admission_fee">Admission Fee</label>
+            <input type="number" name="admission_fee" id="admission_fee" class="form-control" placeholder="Admission Fee">
         </div>
         <button type="submit" class="btn btn-outline-dark">Add Course</button>
     </form>
