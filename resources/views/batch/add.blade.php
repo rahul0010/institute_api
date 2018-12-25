@@ -3,10 +3,11 @@
 @section('page-heading','Add Batch')
 @section('content')
 <div class="container p-4">
-    <form action="" method="post">
+    <form action="/api/v1/batches" method="post">
+        @csrf
         <div class="form-group">
             <label class="form-label" for="batch_id">Batch Id</label>
-            <input type="text" name="batch_id" id="batch_id" class="form-control" placeholder="Batch Id" readonly>
+        <input type="text" name="batch_id" id="batch_id" class="form-control" placeholder="Batch Id" readonly value="{{ $id }}">
         </div>
         <div class="form-group">
             <label class="form-label" for="start_time">Start Time</label>

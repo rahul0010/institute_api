@@ -20,8 +20,8 @@ Route::get('/courses',function(){
 });
 
 Route::get('/courses/add', function(){
-    $response = getApiResponse('/api/v1/courses');
-    return view('course.add', ['response' => $response ]);
+    $response = getLastId('courses');
+    return view('course.add', ['id' => $response]);
 });
 
 Route::get('/courses/{id}', function($id){
@@ -41,15 +41,18 @@ Route::get('/batches',function(){
 });
 
 Route::get('/batches/add',function(){
-    return view('batch.add');
+    $response = getLastId('batches');
+    return view('batch.add', ['id' => $response]);
 });
 
-Route::get('/batches/{id}', function(){
-    return view('batch.view');
+Route::get('/batches/{id}', function($id){
+    $response = getApiResponse('/api/v1/batches/'.$id);
+    return view('batch.view',['response' => $response]);
 });
 
-Route::get('/batches/{id}/update', function(){
-    return view('batch.update');
+Route::get('/batches/{id}/update', function($id){
+    $response = getApiResponse('/api/v1/batches/'.$id);
+    return view('batch.update',['response' => $response]);
 });
 
 Route::get('/faculties',function(){
@@ -58,15 +61,18 @@ Route::get('/faculties',function(){
 });
 
 Route::get('/faculties/add',function(){
-    return view('faculties.add');
+    $response = getLastId('faculties');
+    return view('faculties.add', ['id' => $response]);
 });
 
-Route::get('faculties/{id}', function(){
-    return view('faculties.view');
+Route::get('faculties/{id}', function($id){
+    $response = getApiResponse("/api/v1/faculties/".$id);
+    return view('faculties.view',["response" => $response]);
 });
 
-Route::get('faculties/{id}/update', function(){
-    return view('faculties.update');
+Route::get('faculties/{id}/update', function($id){
+    $response = getApiResponse("/api/v1/faculties/".$id);
+    return view('faculties.update',["response" => $response]);
 });
 
 Route::get('/students', function(){
@@ -75,7 +81,7 @@ Route::get('/students', function(){
 });
 
 Route::get('students/{id}', function () {
-    return view('students.view');
+    return view('students.view',["response" => $response]);
 });
 
 Route::get('/students/add', function(){

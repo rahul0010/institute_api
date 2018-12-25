@@ -36,7 +36,32 @@ class FacultyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->hasFile('photo'))
+        {
+            $original_filename = $request->file('photo')->getClientOriginalName();
+            $filename = pathinfo($original_filename, PATHINFO_FILENAME);
+            $ext = $request->file('photo')->getClientOriginalExtension();
+            $filename_to_store = $filename.'_'.time().'.'.$ext;
+            $path = $request->file('photo')->storeAs('public/student_images/',$filename_to_store);
+        }
+        else
+        {
+            $filename_to_store = 'profile-placeholder.png';
+        }
+
+        $faculty = new Faculty;
+        $faculty->first_name = $request["first_name"];
+        $faculty->middle_name = $request["middle_name"];
+        $faculty->last_name = $request["last_name"];
+        $faculty->email = $request["email"];
+        $faculty->phone = $request["tel"];
+        $faculty->designation = $request["designation"];
+        $faculty->qualification = $request["qualification"];
+        $faculty->aadhar = $request["aadhar"];
+        $faculty->photo_url = $filename_to_store;
+        $faculty->save();
+
+        return "data saved";
     }
 
     /**
@@ -70,7 +95,30 @@ class FacultyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $faculty = Faculty::findOrFail($id);
+
+        if($request->hasFile('photo'))
+        {
+            $original_filename = $request->file('photo')->getClientOriginalName();
+            $filename = pathinfo($original_filename, PATHINFO_FILENAME);
+            $ext = $request->file('photo')->getClientOriginalExtension();
+            $filename_to_store = $filename.'_'.time().'.'.$ext;
+            $path = $request->file('photo')->storeAs('public/student_images/',$filename_to_store);
+            $faculty->photo_url = $filename_to_store;
+        }
+
+        $faculty->first_name = $request["first_name"];
+        $faculty->middle_name = $request["middle_name"];
+        $faculty->last_name = $request["last_name"];
+        $faculty->email = $request["email"];
+        $faculty->phone = $request["tel"];
+        $faculty->designation = $request["designation"];
+        $faculty->qualification = $request["qualification"];
+        $faculty->aadhar = $request["aadhar"];
+        $faculty->save();
+
+        return "data updated";
     }
 
     /**
@@ -81,6 +129,8 @@ class FacultyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $faculty = Faculty::findOrFail($id);
+        $faculty->destroy();
+        return 204;
     }
 }

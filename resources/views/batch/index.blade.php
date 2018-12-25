@@ -22,7 +22,7 @@
                 <th scope="row">{{ $batch["id"] }}</th>
                     <td> {{ $batch["start_time"] }}</td>
                     <td>{{ $batch["end_time"] }}</td>
-                    <td><a href="/batches/{{ $batch["id"] }}">update</a></td>
+                    <td><a href="/batches/{{ $batch["id"] }}">View</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/batches/{{ $batch["id"] }}/update">update</a></td>
                 </tr>
             @endforeach
         </tbody>

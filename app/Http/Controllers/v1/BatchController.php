@@ -36,7 +36,12 @@ class BatchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $batch = new Batch;
+        $batch->start_time = $request["start_time"];
+        $batch->end_time = $request["end_time"];
+        $batch->save();
+
+        return "data saved";
     }
 
     /**
@@ -70,7 +75,12 @@ class BatchController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $batch = Batch::findOrFail($id);
+        $batch->start_time = $request["start_time"];
+        $batch->end_time = $request["end_time"];
+        $batch->save();
+
+        return "data saved";
     }
 
     /**
@@ -81,6 +91,8 @@ class BatchController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $batch = Batch::findOrFail($id);
+        $batch->destroy();
+        return 204;
     }
 }

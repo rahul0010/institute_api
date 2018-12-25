@@ -9539,3 +9539,8 @@ a.text-dark:focus {
   text-overflow: ellipsis;
 }
 
+.image {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+

@@ -47658,6 +47658,11 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
+var input = document.getElementById('photo');
+input.addEventListener('change', function () {
+  var img = document.getElementById('resultImg');
+  img.src = URL.createObjectURL(this.files[0]);
+});
 
 /***/ }),
 

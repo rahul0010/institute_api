@@ -11,7 +11,7 @@
         @foreach ($data['data'] as $faculty)
             <div class="col-md-4 col-lg-3 col-sm-6 col-xs-12 mb-4 d-flex">
                 <div class="card" >
-                <img class="card-img-top" src="{{ $faculty["photo_url"] }}" alt="{{ $faculty["first_name"]." ".$faculty["middle_name"]." ".$faculty["last_name"] }}" >
+                <img class="card-img-top" src="{{ Storage::url('public/student_images/'.$faculty["photo_url"]) }}" alt="{{ $faculty["first_name"]." ".$faculty["middle_name"]." ".$faculty["last_name"] }}" >
                     <div class="card-body d-flex-column">
                         <h5 class="card-title">{{ $faculty["first_name"]." ".$faculty["middle_name"]." ".$faculty["last_name"] }}</h5>
                         <span class="card-text d-block">{{ $faculty["email"] }}</span>

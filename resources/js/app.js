@@ -31,3 +31,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app'
 });
+
+const input = document.getElementById('photo');
+input.addEventListener('change', function(){
+    var img = document.getElementById('resultImg');
+    img.src = URL.createObjectURL(this.files[0]);
+})

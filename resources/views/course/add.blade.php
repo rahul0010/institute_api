@@ -2,15 +2,12 @@
 @section('title','Courses')
 @section('page-heading','Add Course')
 @section('content')
-@php
-    $arr = json_decode($response,true);
-@endphp
 <div class="container p-4">
     <form action="/api/v1/courses" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label class="form-label" for="course_id">Course Id</label>
-        <input type="text" name="course_id" id="course_id" class="form-control" placeholder="Course Id" readonly value="{{ $arr["total"]+1 }}">
+        <input type="text" name="course_id" id="course_id" class="form-control" placeholder="Course Id" readonly value="{{ $id }}">
         </div>
         <div class="form-group">
             <label class="form-label" for="course_name">Course Name</label>

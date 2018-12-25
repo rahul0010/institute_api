@@ -3,19 +3,20 @@
 @section('page-heading','Add Faculty')
 @section('content')
     <div class="container p-4">
-        <form action="" method="post">
+        <form action="/api/v1/faculties" method="post" enctype="multipart/form-data">
+            @csrf
             <div class="row">
                 <div class="col-md-3 mt-4">
                     <label for="photo" class="form-label">
-                        <img class="w-100 d-block rounded border border-dark" src="{{ url('img/profile-placeholder.png') }}" alt="">
+                        <img class="w-100 d-block rounded border border-dark image" src="{{ url('img/profile-placeholder.png') }}" alt="" id="resultImg">
                         <small class="d-block text-muted-form-text text-center">Click on image to upload profile picture</small>
                     </label>
-                    <input type="file" name="photo" id="photo" class="form-control-file" hidden>
+                    <input type="file" name="photo" id="photo" class="form-control-file" hidden accept=".jpg,.jpeg,.png">
                 </div>
                 <div class="col-md-9">
                     <div class="form-group">
                         <label for="sr" class="form-label">Faculty Id</label>
-                        <input type="number" name="id" id="sr" class="form-control" readonly placeholder="Id">
+                    <input type="number" name="id" id="sr" class="form-control" readonly placeholder="Id" value="{{ $id }}">
                     </div>
                     <div class="form-group">
                         <label for="first_name" class="form-label">First  Name</label>
