@@ -2,6 +2,7 @@
 @section('title','Students')
 @section('page-heading','Students')
 @section('content')
+@section('link','/students/add');
 <div class="container">
     <div class="row">
         @php
@@ -30,7 +31,7 @@
                         </span>
                     <span class="card-text d-block"><a href="/students/{{ $student["id"] }}" class="card-link">View</a></span>
                     <span class="card-text d-block"><a href="/students/{{ $student["id"] }}/update" class="card-link">Update</a></span>
-                    <span class="card-text d-block"><a href="/students/{{ $student["id"] }}/pay" class="card-link">Fee Payment</a></span>
+                    <span class="card-text d-block"><a href="/students/{{ $student["id"] }}/fee" class="card-link">Fee Payment</a></span>
                     </div>
                 </div>
             </div>

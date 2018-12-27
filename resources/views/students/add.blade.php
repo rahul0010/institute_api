@@ -1,6 +1,7 @@
 @extends('app')
 @section('title','Students')
 @section('page-heading','Add Student')
+@section('classes','d-none')
 @section('content')
     <div class="container p-4">
         <form action="/api/v1/students" method="post"  enctype="multipart/form-data">

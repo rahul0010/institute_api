@@ -33,7 +33,31 @@ const app = new Vue({
 });
 
 const input = document.getElementById('photo');
-input.addEventListener('change', function(){
-    var img = document.getElementById('resultImg');
-    img.src = URL.createObjectURL(this.files[0]);
-})
+if(input)
+{
+    input.addEventListener('change', function(){
+        var img = document.getElementById('resultImg');
+        img.src = URL.createObjectURL(this.files[0]);
+    });
+}
+
+const formSubmitData = document.getElementById('form');
+if(formSubmitData)
+{
+    formSubmitData.addEventListener('submit', function(e)
+    {
+        e.preventDefault();
+        fetch(form.action, {
+            method : 'POST',
+            body: new FormData(form)
+        })
+        .then(response => {
+            formSubmitData.reset();
+            return response.text()
+        })
+        .then(response => {
+            formSubmitData.innerHTML = response + `<br><a href="${location.href}">Click here to add new record</a><br><a href="/">Click here</a> to go to home`;
+        })
+        .catch(error => console.error('Error: ',error))
+    });
+}

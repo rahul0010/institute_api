@@ -1,13 +1,13 @@
 @extends('app')
 @section('title','Students')
 @section('page-heading','View Student')
+@section('classes','d-none')
 @section('content')
 @php
     $data = json_decode($response,true);
 @endphp
     <div class="container p-4">
-    <form action="/api/v1/students/{{ $data["id"] }}" method="post" enctype="multipart/form-data">
-        @method('put')
+    <form>
             <div class="row">
                 <div class="col-md-3 mt-4">
                     <label for="photo" class="form-label">
@@ -61,5 +61,6 @@
             </div>
             {{-- <button type="submit" class="btn btn-outline-dark">Update Student</button> --}}
         </form>
+        <a href="/students/{{$data["id"]}}/fee" class="btn btn-outline-dark">Fee Details</a>
     </div>
 @endsection

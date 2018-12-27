@@ -1,9 +1,10 @@
 @extends('app')
 @section('title','Batches')
 @section('page-heading','Add Batch')
+@section('classes','d-none')
 @section('content')
 <div class="container p-4">
-    <form action="/api/v1/batches" method="post">
+    <form action="/api/v1/batches" method="post" id="form">
         @csrf
         <div class="form-group">
             <label class="form-label" for="batch_id">Batch Id</label>
@@ -18,7 +19,7 @@
             <input type="time" name="end_time" id="end_time" class="form-control">
             <small class="text-muted form-text">The batch timing can be from 10:00 to 11:00. Start time: 10:00 AM and End Time: 11:00 AM</small>
         </div>
-        <button type="submit" class="btn btn-outline-dark">Add Batch</button>
+        <button type="submit" class="btn btn-outline-dark" id="submit">Add Batch</button>
     </form>
 </div>
 @endsection

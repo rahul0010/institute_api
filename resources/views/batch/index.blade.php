@@ -1,6 +1,7 @@
 @extends('app')
 @section('title','Batches')
 @section('page-heading','Batches')
+@section('link','/batches/add')
 @section('content')
 <div class="container">
     @php

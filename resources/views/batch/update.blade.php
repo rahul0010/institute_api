@@ -1,6 +1,7 @@
 @extends('app')
 @section('title','Batches')
 @section('page-heading','Update Batch')
+@section('classes','d-none')
 @section('content')
 @php
     $data = json_decode($response, true);

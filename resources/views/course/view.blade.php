@@ -1,6 +1,7 @@
 @extends('app')
 @section('title','Courses')
 @section('page-heading','View Course')
+@section('classes','d-none')
 @section('content')
 <div class="container p-4">
     @php

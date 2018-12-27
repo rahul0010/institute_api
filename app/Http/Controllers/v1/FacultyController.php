@@ -8,6 +8,7 @@ use App\Faculty;
 
 class FacultyController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *

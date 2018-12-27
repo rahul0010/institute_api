@@ -6,7 +6,7 @@
     $data = json_decode($response, true);
 @endphp
     <div class="container p-4">
-    <form action="/api/v1/faculties/{{ $data["id"] }}" method="post">
+    <form action="/api/v1/faculties/{{ $data["id"] }}" method="post" enctype="multipart/form-data">
         @method('put')
             <div class="row">
                 <div class="col-md-3 mt-4">

@@ -46,3 +46,29 @@ $primary-overlay: rgba(50,146,166,0.8);
 		padding-right:20px;
 	}
 }
+
+.link_btn,
+.link_btn:link,
+.link_btn:visited
+{
+    display: flex;
+    position: fixed;
+    right: 3rem;
+    bottom: 3rem;
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem;
+    text-decoration: none;
+    background-color: #efefef;
+    box-shadow: 0 2rem 4rem rgba(50,146,166,0.5);
+    transition: all .2s;
+
+    &:hover
+    {
+        text-decoration: none;
+        transform: scale(1.2);
+    }
+}

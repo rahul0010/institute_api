@@ -1,6 +1,7 @@
 @extends('app')
 @section('title','Students')
 @section('page-heading','Update Student')
+@section('classes','d-none')
 @section('content')
 @php
     $data = json_decode($response,true);

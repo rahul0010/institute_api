@@ -8,6 +8,7 @@ use App\Student;
 
 class StudentsController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -105,10 +106,6 @@ class StudentsController extends Controller
             $filename_to_store = $filename.'_'.time().'.'.$ext;
             $path = $request->file('photo')->storeAs('public/student_images/',$filename_to_store);
             $student->photo_url = $filename_to_store;
-        }
-        else
-        {
-            $filename_to_store = 'profile-placeholder.png';
         }
 
         $student->first_name = $request["first_name"];

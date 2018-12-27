@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title')</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -28,14 +28,12 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                @auth
                 <ul class="navbar-nav mr-auto">
                     <a class="nav-item nav-link" href="/students">Students <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="/faculties">Faculties</a>
                     <a class="nav-item nav-link" href="/courses">Courses</a>
                     <a class="nav-item nav-link" href="/batches">Batches</a>
                 </ul>
-                @endauth
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
@@ -44,13 +42,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
                     @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  onlick="$">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" id="logout_dropdown">
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
@@ -71,11 +74,10 @@
         </div>
             @yield('content')
             <a href="@yield('link')" class="link_btn link @yield('classes')"><span>&plus;</span></a>
+        <script src="{{ url('js/app.js') }}"></script>
     </div>
-    <div class="container" id="message"></div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>
