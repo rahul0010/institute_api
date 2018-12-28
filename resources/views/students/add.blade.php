@@ -4,7 +4,7 @@
 @section('classes','d-none')
 @section('content')
     <div class="container p-4">
-        <form action="/api/v1/students" method="post"  enctype="multipart/form-data">
+        <form action="/api/v1/students" method="post"  enctype="multipart/form-data" id="form">
             @csrf
             <div class="row">
                 <div class="col-md-3 mt-4">
@@ -72,10 +72,26 @@
                 </datalist>
             </div>
             <div class="form-group">
+                <label for="branch" class="form-label">Branches</label>
+                <input list="branch_list" name="branch" id="branch" class="form-control" placeholder="Branch Name">
+                @php
+                    $request = getApiResponse('/api/v1/branches');
+                    $arr = json_decode($request,true);
+                @endphp
+                <datalist id="branch_list">
+                    @foreach ($arr["data"] as $branch)
+                    <option value="{{ $branch["id"] }}">{{ $branch["location"] }}</option>
+                    @endforeach
+                </datalist>
+            </div>
+            <div class="form-group">
                 <label for="aadhar" class="form-label">Aadhar No.</label>
                 <input type="text" name="aadhar" id="aadhar" class="form-control" placeholder="0000 0000 0000">
             </div>
-            <button type="submit" class="btn btn-outline-dark">Add Student</button>
+            <button type="submit" class="btn btn-outline-dark" id="submit">Add Student</button>
         </form>
+    </div>
+    <div class="container d-none" id="div">
+        <a href="/students/{{$id}}/course" class="link btn btn-outline-dark">Add Course Data</a>
     </div>
 @endsection

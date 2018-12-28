@@ -37,6 +37,7 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
+        $student = new Student;
         if($request->hasFile('photo'))
         {
             $original_filename = $request->file('photo')->getClientOriginalName();
@@ -44,13 +45,13 @@ class StudentsController extends Controller
             $ext = $request->file('photo')->getClientOriginalExtension();
             $filename_to_store = $filename.'_'.time().'.'.$ext;
             $path = $request->file('photo')->storeAs('public/student_images/',$filename_to_store);
+            $student->photo_url = $filename_to_store;
         }
         else
         {
             $filename_to_store = 'profile-placeholder.png';
+            $student->photo_url = $filename_to_store;
         }
-
-        $student = new Student;
         $student->first_name = $request["first_name"];
         $student->middle_name = $request["middle_name"];
         $student->last_name = $request["last_name"];
@@ -58,9 +59,9 @@ class StudentsController extends Controller
         $student->phone = $request["tel"];
         $student->qualification = $request["qualification"];
         $student->aadhar = $request["aadhar"];
-        $student->photo_url = $filename_to_store;
         $student->faculty_id = $request["faculty_id"];
         $student->course_id = $request["course"];
+        $student->branch_id = $request["branch"];
         $student->save();
 
         return "data saved";
@@ -117,6 +118,7 @@ class StudentsController extends Controller
         $student->aadhar = $request["aadhar"];
         $student->faculty_id = $request["faculty_id"];
         $student->course_id = $request["course"];
+        $student->branch_id = $request["branch"];
         $student->save();
 
         return "data saved";

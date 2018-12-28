@@ -18,6 +18,7 @@
             <th scope="col">Payment Date</th>
             <th scope="col">Total Fees Paid</th>
             <th scope="col">Balance</th>
+            <th scope="col">Received By</th>
             <th scope="col">Action</th>
             </tr>
         </thead>
@@ -33,10 +34,11 @@
                     <td>{{ $fee["payment_date"] }}</td>
                     <td>{{ $fee["total_fee_paid"] }}</td>
                     <td>{{ $fee["balance"] }}</td>
+                    <td>{{ $fee["received_by"] }}</td>
                     @if ($fee["amount"] != 0)
-                        <td>Paid</td>
+                        <td>Paid <br><a class="link" href="/students/{{ $fee["student_id"] }}/fee/{{ $fee["id"] }}/invoice">Print</a></td>
                     @else
-                <td><a class="link" href="/students/{{ $fee["student_id"] }}/fee/{{ $fee["id"] }}/pay">Pay</a></td>
+                        <td><a class="link" href="/students/{{ $fee["student_id"] }}/fee/{{ $fee["id"] }}/pay">Pay</a></td>
                     @endif
                 </tr>
             @endforeach

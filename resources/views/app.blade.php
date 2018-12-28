@@ -34,6 +34,7 @@
                     <a class="nav-item nav-link" href="/faculties">Faculties</a>
                     <a class="nav-item nav-link" href="/courses">Courses</a>
                     <a class="nav-item nav-link" href="/batches">Batches</a>
+                    <a class="nav-item nav-link" href="/branches">Branches</a>
                 </ul>
                 @endauth
 

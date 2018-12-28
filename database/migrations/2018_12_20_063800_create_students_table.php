@@ -25,6 +25,7 @@ class CreateStudentsTable extends Migration
             $table->decimal('aadhar',12,0);
             $table->integer('faculty_id');
             $table->integer('course_id');
+            $table->integer('branch_id');
             $table->timestamps();
         });
     }

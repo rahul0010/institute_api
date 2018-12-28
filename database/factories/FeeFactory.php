@@ -14,6 +14,7 @@ $factory->define(App\Fee::class, function (Faker $faker) {
         'amount' => $faker->numberBetween(2,10) * 1000,
         'payment_date' => $faker->date(),
         'total_fee_paid' => $faker->numberBetween(5,50) * 1000,
+        'received_by' => $faker->name,
         'balance' => $faker->numberBetween(5,50) * 1000
     ];
 });

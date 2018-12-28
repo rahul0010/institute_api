@@ -36,6 +36,10 @@
             <label class="form-label" for="balance">Balance</label>
             <input type="number" name="balance" id="balance" class="form-control" placeholder="Balance"  value="{{ $fee_data["balance"] }}">
         </div>
+        <div class="form-group">
+            <label class="form-label" for="receiver">Receiver</label>
+            <input type="text" name="receiver" id="receiver" class="form-control" placeholder="Receiver's name"  value="{{ Auth::user()->name }}">
+        </div>
         <button type="submit" class="btn btn-outline-dark">Pay</button>
     </form>
 </div>

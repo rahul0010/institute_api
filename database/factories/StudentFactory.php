@@ -13,6 +13,7 @@ $factory->define(App\Student::class, function (Faker $faker) {
         'qualification' => $faker->word,
         'faculty_id' => $faker->numberBetween(1,10),
         'course_id' => $faker->numberBetween(1,10),
+        'branch_id' => $faker->numberBetween(1,2),
         'aadhar' => $faker->numerify('############')
     ];
 });

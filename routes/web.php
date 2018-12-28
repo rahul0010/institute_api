@@ -117,3 +117,33 @@ Route::get('/students/{id}/fee/{fid}/pay', function($id,$fid)
     $response = getApiResponse('/api/v1/students/'.$id.'/fee/'.$fid);
     return view('fees.pay',["id" => $id, "fee" => $response]);
 })->middleware('auth');
+
+Route::get('/branches', function(){
+    $response = getApiResponse('/api/v1/branches');
+    return view('branches.index',["response" => $response]);
+})->middleware('auth');
+
+Route::get('/branches/add', function()
+{
+    $response = getLastId('branches');
+    return view('branches.add',["id" => $response]);
+});
+
+Route::get('/branches/{id}', function($id)
+{
+    $response = getApiResponse('/api/v1/branches/'.$id);
+    return view('branches.view',["response" => $response]);
+});
+
+Route::get('/branches/{id}/update', function($id){
+    $response = getApiResponse('/api/v1/branches/'.$id);
+    return view('branches.update',["response" => $response]);
+});
+
+Route::get('/students/{id}/fee/{fid}/invoice', function($id, $fid){
+    return view('fees.bill',["id" => $id, "fid" => $fid]);
+});
+
+Route::get('/home', function(){
+    return redirect('/students');
+});

@@ -47670,6 +47670,7 @@ if (input) {
 var formSubmitData = document.getElementById('form');
 
 if (formSubmitData) {
+  var div = document.getElementById('div');
   formSubmitData.addEventListener('submit', function (e) {
     e.preventDefault();
     fetch(form.action, {
@@ -47680,6 +47681,10 @@ if (formSubmitData) {
       return response.text();
     }).then(function (response) {
       formSubmitData.innerHTML = response + "<br><a href=\"".concat(location.href, "\">Click here to add new record</a><br><a href=\"/\">Click here</a> to go to home");
+
+      if (div) {
+        div.classList.remove("d-none");
+      }
     }).catch(function (error) {
       return console.error('Error: ', error);
     });

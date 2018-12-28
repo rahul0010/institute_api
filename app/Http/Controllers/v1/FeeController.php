@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Student;
 use App\Fee;
+use Auth;
+use App\User;
 
 class FeeController extends Controller
 {
@@ -45,6 +47,7 @@ class FeeController extends Controller
             $fee->fees_paid = Fee::where('student_id',$student_id)->where('course_id',$course_id)->sum('amount');
             $fee->total_fee_paid = Fee::where('student_id',$student_id)->where('course_id',$course_id)->sum('amount');
             $fee->balance = $fee_data[0]->balance;
+            $fee->received_by = ' ';
             $fee->save();
         }
     }
@@ -69,6 +72,7 @@ class FeeController extends Controller
         $fee->payment_date = date('Y-m-d h:i:s' , time());
         $fee->total_fee_paid = $request["admission_fee"];
         $fee->balance = $request["total_fee"] - $request["admission_fee"];
+        $fee->received_by = $request["receiver"];
         $fee->save();
 
         Self::newFeeRecord($id,$request["course"],0);
@@ -111,9 +115,10 @@ class FeeController extends Controller
         $fee->amount = $request["amount"];
         $fee->total_fee_paid = Fee::where('student_id',$id)->where('course_id',$fee->course_id)->sum('amount') + $request["amount"];
         $fee->balance = $request["total_fee"] - (Fee::where('student_id',$id)->where('course_id',$fee->course_id)->sum('amount') + $request["amount"]);
+        $fee->received_by = $request["receiver"];
         $fee->save();
         Self::newFeeRecord($id,$fee->course_id,$fee->installment_no);
-        return 'paid';
+        return view('fee.bill',['id' => $id,'fid' => $fid]);
     }
 
     /**

@@ -26,6 +26,7 @@ class CreateFeesTable extends Migration
             $table->timestamp('payment_date')->nullable();
             $table->integer('total_fee_paid')->nullable();
             $table->integer('balance')->nullable();
+            $table->string('received_by');
             $table->timestamps();
         });
     }

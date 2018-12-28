@@ -44,6 +44,7 @@ if(input)
 const formSubmitData = document.getElementById('form');
 if(formSubmitData)
 {
+    var div = document.getElementById('div');
     formSubmitData.addEventListener('submit', function(e)
     {
         e.preventDefault();
@@ -57,6 +58,9 @@ if(formSubmitData)
         })
         .then(response => {
             formSubmitData.innerHTML = response + `<br><a href="${location.href}">Click here to add new record</a><br><a href="/">Click here</a> to go to home`;
+            if(div){
+                div.classList.remove("d-none");
+            }
         })
         .catch(error => console.error('Error: ',error))
     });

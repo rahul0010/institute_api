@@ -7,7 +7,7 @@
     $data = json_decode($response,true);
 @endphp
     <div class="container p-4">
-    <form action="/api/v1/students/{{ $data["id"] }}" method="post" enctype="multipart/form-data">
+    <form action="/api/v1/students/{{ $data["id"] }}" method="post" enctype="multipart/form-data" id="form">
         @method('put')
             <div class="row">
                 <div class="col-md-3 mt-4">
@@ -75,10 +75,23 @@
                 </datalist>
             </div>
             <div class="form-group">
+                <label for="branch" class="form-label">Branches</label>
+            <input list="branch_list" name="branch" id="branch" class="form-control" placeholder="Branch Name" value="{{ $data["branch_id"] }}">
+                @php
+                    $request = getApiResponse('/api/v1/branches');
+                    $arr = json_decode($request,true);
+                @endphp
+                <datalist id="branch_list">
+                    @foreach ($arr["data"] as $branch)
+                    <option value="{{ $branch["id"] }}">{{ $branch["location"] }}</option>
+                    @endforeach
+                </datalist>
+            </div>
+            <div class="form-group">
                 <label for="aadhar" class="form-label">Aadhar No.</label>
                 <input type="text" name="aadhar" id="aadhar" class="form-control" placeholder="0000 0000 0000" value="{{ $data["aadhar"] }}">
             </div>
-            <button type="submit" class="btn btn-outline-dark">Update Student</button>
+            <button type="submit" class="btn btn-outline-dark" id="submit">Update Student</button>
         </form>
     </div>
 @endsection
