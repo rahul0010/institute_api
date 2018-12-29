@@ -17,6 +17,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    <div class="loading" id="loading"><span>Uploading......</span></div>
     <div id="app">
         <nav class="navbar sticky-top navbar-expand-md navbar-light">
             <a class="navbar-brand" href="{{ url('/') }}">

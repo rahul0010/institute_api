@@ -4,7 +4,7 @@
 @section('classes','d-none')
 @section('content')
 <div class="container p-4">
-    <form action="/api/v1/batches" method="post" id="form">
+    <form action="/api/v1/batches" method="post" id="form" id="form">
         @csrf
         <div class="form-group">
             <label class="form-label" for="batch_id">Batch Id</label>

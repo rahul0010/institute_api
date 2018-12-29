@@ -47,7 +47,9 @@ if(formSubmitData)
     var div = document.getElementById('div');
     formSubmitData.addEventListener('submit', function(e)
     {
+        document.getElementById('loading').style.display = "block";
         e.preventDefault();
+
         fetch(form.action, {
             method : 'POST',
             body: new FormData(form)
@@ -57,10 +59,14 @@ if(formSubmitData)
             return response.text()
         })
         .then(response => {
-            formSubmitData.innerHTML = response + `<br><a href="${location.href}">Click here to add new record</a><br><a href="/">Click here</a> to go to home`;
             if(div){
                 div.classList.remove("d-none");
             }
+            else
+            {
+                formSubmitData.innerHTML = response + `<br><a href="${location.href}">Click here to add new record</a><br><a href="/">Click here</a> to go to home`;
+            }
+            var loading = document.getElementById('loading').style.display = "none";
         })
         .catch(error => console.error('Error: ',error))
     });
