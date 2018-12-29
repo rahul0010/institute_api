@@ -3,7 +3,7 @@
 @section('page-heading','Add Faculty')
 @section('content')
     <div class="container p-4">
-        <form action="/api/v1/faculties" method="post" enctype="multipart/form-data">
+        <form action="/api/v1/faculties" method="post" enctype="multipart/form-data" id="form">
             @csrf
             <div class="row">
                 <div class="col-md-3 mt-4">
@@ -52,7 +52,7 @@
                 <label for="aadhar" class="form-label">Aadhar No.</label>
                 <input type="text" name="aadhar" id="aadhar" class="form-control" placeholder="0000 0000 0000">
             </div>
-            <button type="submit" class="btn btn-outline-dark">Add Faculty</button>
+            <button type="submit" class="btn btn-outline-dark" id="submit">Add Faculty</button>
         </form>
     </div>
 @endsection

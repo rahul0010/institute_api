@@ -6,7 +6,7 @@
     $data = json_decode($response, true);
 @endphp
     <div class="container p-4">
-    <form action="/api/v1/faculties/{{ $data["id"] }}" method="post" enctype="multipart/form-data">
+    <form action="/api/v1/faculties/{{ $data["id"] }}" method="post" enctype="multipart/form-data" id="form">
         @method('put')
             <div class="row">
                 <div class="col-md-3 mt-4">
@@ -55,7 +55,7 @@
                 <label for="aadhar" class="form-label">Aadhar No.</label>
                 <input type="text" name="aadhar" id="aadhar" class="form-control" placeholder="0000 0000 0000" value="{{ $data["aadhar"] }}">
             </div>
-            <button type="submit" class="btn btn-outline-dark">Update Faculty</button>
+            <button type="submit" class="btn btn-outline-dark" id="submit">Update Faculty</button>
         </form>
     </div>
 @endsection
