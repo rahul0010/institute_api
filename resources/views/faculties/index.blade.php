@@ -1,6 +1,7 @@
 @extends('app')
 @section('title','Faculties')
 @section('page-heading','Faculties')
+@section('link','/faculties/add')
 @section('content')
 <div class="container">
     <div class="row">
