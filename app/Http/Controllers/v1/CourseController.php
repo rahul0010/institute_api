@@ -16,7 +16,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return Course::paginate(15);
+        return Course::all();
     }
 
     /**

@@ -4,7 +4,7 @@
 @section('classes','d-none')
 @section('content')
 <div class="container p-4">
-    <form action="/api/v1/courses" method="post" enctype="multipart/form-data">
+    <form action="/api/v1/courses" method="post" enctype="multipart/form-data" id="form">
         @csrf
         <div class="form-group">
             <label class="form-label" for="course_id">Course Id</label>
@@ -34,7 +34,7 @@
             <label class="form-label" for="syllabus">Syllabus</label>
             <input type="file" name="syllabus" id="syllabus" class="form-control-file" placeholder="Select Syllabus file" accept=".doc,.docx,.xls,.xlsx,.odt,.pdf">
         </div>
-        <button type="submit" class="btn btn-outline-dark">Add Course</button>
+        <button type="submit" class="btn btn-outline-dark" id="submit">Add Course</button>
     </form>
 </div>
 @endsection

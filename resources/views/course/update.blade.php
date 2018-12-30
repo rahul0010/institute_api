@@ -7,7 +7,7 @@
     @php
         $arr = json_decode($response, true);
     @endphp
-    <form action="/api/v1/courses/{{$arr["id"]}}" method="post" enctype="multipart/form-data">
+    <form action="/api/v1/courses/{{$arr["id"]}}" method="post" enctype="multipart/form-data" id="form">
         @method('put')
         <div class="form-group">
             <label class="form-label" for="course_id">Course Id</label>
@@ -37,7 +37,7 @@
             <label class="form-label" for="syllabus">Syllabus</label>
             <input type="file" name="syllabus" id="syllabus" class="form-control-file" placeholder="Select Syllabus file" accept=".doc,.docx,.xls,.xlsx,.odt,.pdf">
         </div>
-        <button type="submit" class="btn btn-outline-dark">Update Course</button>
+        <button type="submit" class="btn btn-outline-dark" id="form">Update Course</button>
     </form>
 </div>
 @endsection
