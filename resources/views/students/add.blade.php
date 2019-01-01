@@ -66,7 +66,7 @@
                     $arr = json_decode($request,true);
                 @endphp
                 <datalist id="course_list">
-                    @foreach ($arr["data"] as $course)
+                    @foreach ($arr as $course)
                     <option value="{{ $course["id"] }}">{{ $course["name"] }}</option>
                     @endforeach
                 </datalist>
