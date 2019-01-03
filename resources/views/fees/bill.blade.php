@@ -50,9 +50,13 @@
             <h3 class="">Invoice Details</h3>
             <span class="text-dark d-block">Invoice Id: {{ $data["id"] }}</span>
             <span class="text-dark d-block">Invoice Date: {{ date('d-m-Y',strtotime($data["payment_date"])) }}</span>
-            <span class="text-dark d-block">Installment No: {{ $data["installment_no"] }}</span>
+            <span class="text-dark d-block">Installment No: @if ($data["installment_no"] == 0)
+                    {{ $data["installment_no"] }} (admission)
+                @else
+                {{ $data["installment_no"] }}
+                @endif</span>
             <span class="text-dark d-block">Total Fee: &#8377;{{ $data["total_fees"] }}</span>
-            <span class="text-dark d-block">Fee Paid: &#8377;{{ $data["fees_paid"] }}</span>
+            <span class="text-dark d-block">Amount Paid: &#8377;{{ $data["amount"] }}</span>
             <span class="text-dark d-block">Balance: &#8377;{{ $data["balance"] }}</span>
             <span class="text-dark d-block">Payment Due: {{ date('d-m-Y',strtotime($data["payment_due"])) }}</span>
             <span class="text-dark d-block">Received By: {{ $data["received_by"] }}</span>
@@ -66,7 +70,7 @@
                 <tr>
                 <th scope="col">Installment No.</th>
                 <th scope="col">Payment Due</th>
-                <th scope="col">Amount</th>
+                <th scope="col">Amount Paid</th>
                 <th scope="col">Payment Date</th>
                 <th scope="col">Balance</th>
                 <th scope="col">Received By</th>
@@ -75,10 +79,22 @@
             <tbody>
                 @foreach ($arr as $fee)
                     <tr>
-                        <th scope="row">{{ $fee["installment_no"] }}</th>
+                        <th scope="row">
+                            @if ($fee["installment_no"] == 0)
+                                {{ $fee["installment_no"] }} (admission)
+                            @else
+                            {{ $fee["installment_no"] }}
+                            @endif
+                        </th>
                         <td>{{ date('d-m-Y',strtotime($fee["payment_due"])) }}</td>
                         <td>{{ $fee["amount"] }}</td>
-                        <td>{{ date('d-m-Y',strtotime($fee["payment_date"])) }}</td>
+                        <td>
+                            @if ($fee["payment_date"])
+                                {{ date('d-m-Y',strtotime($fee["payment_date"])) }}
+                            @else
+                                &nbsp;
+                            @endif
+                        </td>
                         <td>{{ $fee["balance"] }}</td>
                         <td>{{ $fee["received_by"] }}</td>
                     </tr>
@@ -91,14 +107,15 @@
     <div class="text-center">
         <p class="text-dark d-block">Terms and conditions</p>
     </div>
-        <ul>
+        <ul class="text-italic">
             <li>Fee should be paid on time if not then late fee will be charged.</li>
             <li>Once the fee is paid, it is not refundable nor transferable.</li>
         </ul>
 </div>
 <div class="mt-5"></div>
 <div class="mt-5"></div>
-<div class="container text-right mr-5">Sign</div>
+<div class="container text-right mr-5 pr-5">Sign</div>
+<div class="container text-right mr-0">Smart Computer Institute</div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 

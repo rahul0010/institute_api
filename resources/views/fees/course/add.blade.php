@@ -9,7 +9,7 @@
     $course = json_decode($newResponse, true);
 @endphp
 <div class="container p-4">
-    <form action="/api/v1/students/{{$id}}/fee" method="post" id="form">
+    <form action="/api/v1/students/{{$id}}/fee" method="post">
         @csrf
         <div class="form-group">
             <label class="form-label" for="student_id">Student Id</label>

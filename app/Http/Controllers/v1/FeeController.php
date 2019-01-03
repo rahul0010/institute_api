@@ -76,7 +76,7 @@ class FeeController extends Controller
         $fee->save();
 
         Self::newFeeRecord($id,$request["course"],0);
-        return "paid";
+        return view('fees.bill',['id' => $id,'fid' => $fee->id]);
     }
 
     /**
@@ -118,7 +118,7 @@ class FeeController extends Controller
         $fee->received_by = $request["receiver"];
         $fee->save();
         Self::newFeeRecord($id,$fee->course_id,$fee->installment_no);
-        return view('fee.bill',['id' => $id,'fid' => $fid]);
+        return view('fees.bill',['id' => $id,'fid' => $fid]);
     }
 
     /**
