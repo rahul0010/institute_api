@@ -41,10 +41,10 @@
     <div class="row mt-5">
         <div class="col">
             <h3 class="">Invoice To</h3>
-        <span class="text-dark d-block">{{ $student["first_name"].' '.$student["middle_name"].' '.$student["last_name"]}}</span>
-        <span class="text-dark d-block">{{ $course["name"] }}</span>
-        <span class="text-dark d-block">{{ $student["email"] }}</span>
-        <span class="text-dark d-block">{{ $student["phone"] }}</span>
+            <span class="text-dark d-block">{{ $student["first_name"].' '.$student["middle_name"].' '.$student["last_name"]}}</span>
+            <span class="text-dark d-block">{{ $course["name"] }}</span>
+            <span class="text-dark d-block">{{ $student["email"] }}</span>
+            <span class="text-dark d-block">{{ $student["phone"] }}</span>
         </div>
         <div class="col">
             <h3 class="">Invoice Details</h3>
@@ -116,6 +116,32 @@
 <div class="mt-5"></div>
 <div class="container text-right mr-5 pr-5">Sign</div>
 <div class="container text-right mr-0">Smart Computer Institute</div>
+<hr>
+<div class="row mt-5">
+        <div class="col">
+            <h3 class="">Invoice To</h3>
+            <span class="text-dark d-block">{{ $student["id"] }}</span>
+            <span class="text-dark d-block">{{ $student["first_name"].' '.$student["middle_name"].' '.$student["last_name"]}}</span>
+            <span class="text-dark d-block">{{ $course["name"] }}</span>
+            <span class="text-dark d-block">{{ $student["email"] }}</span>
+            <span class="text-dark d-block">{{ $student["phone"] }}</span>
+        </div>
+        <div class="col">
+            <h3 class="">Invoice Details</h3>
+            <span class="text-dark d-block">Invoice Id: {{ $data["id"] }}</span>
+            <span class="text-dark d-block">Invoice Date: {{ date('d-m-Y',strtotime($data["payment_date"])) }}</span>
+            <span class="text-dark d-block">Installment No: @if ($data["installment_no"] == 0)
+                    {{ $data["installment_no"] }} (admission)
+                @else
+                {{ $data["installment_no"] }}
+                @endif</span>
+            <span class="text-dark d-block">Total Fee: &#8377;{{ $data["total_fees"] }}</span>
+            <span class="text-dark d-block">Amount Paid: &#8377;{{ $data["amount"] }}</span>
+            <span class="text-dark d-block">Balance: &#8377;{{ $data["balance"] }}</span>
+            <span class="text-dark d-block">Payment Due: {{ date('d-m-Y',strtotime($data["payment_due"])) }}</span>
+            <span class="text-dark d-block">Received By: {{ $data["received_by"] }}</span>
+        </div>
+    </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 
